@@ -1,0 +1,34 @@
+@import "../../../styles.scss";
+
+div.txs {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    background: $g5;
+    margin: 30px 0;
+
+    h2 {
+        font-size: 24px;
+        font-weight: 300;
+        text-align: center;
+    }
+
+    div.tx {
+        padding: 15px;
+        h3 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 15px;
+
+            &.label {
+                font-weight: 700;
+                margin-bottom: 0;
+            }
+        }
+    }
+}

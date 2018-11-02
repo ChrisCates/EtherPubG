@@ -1,0 +1,34 @@
+<div class="form">
+  <h2>Purchase A Weapon Skin</h2>
+
+  <div class="items">
+    <div class="item easing" 
+    *ngFor="let item of items; let i of index;"
+    [ngClass]="{'active': this.main.item === i}"
+    (click)="this.main.item = i; this.activeItem = item;"
+    >
+      <div class="image">
+        <img src="{{item.asset}}"/>
+      </div>
+      <div class="text easing">
+        <h3>{{item.name}}</h3>
+        <p>Costs {{item.cost}} ETH</p>
+      </div>
+    </div>
+  </div>
+  <!-- End of Items -->
+
+  <div class="inputs">
+    <div class="input address">
+      <p>Purchasing from which address? <a class="placeholder easing" (click)="this.main.sendAddress = this.main.defaultAddress">Use placeholder address</a></p>
+      <input type="text" placeholder="0x..." [(ngModel)]="this.main.sendAddress"/>
+    </div>
+    <div class="input submit">
+      <a class="button easing" (click)="this.main.sendTransaction(this.activeItem);">
+        Purchase
+      </a>
+    </div>
+  </div>
+  <!-- End of Inputs -->
+
+</div>

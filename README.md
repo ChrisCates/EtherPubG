@@ -1,42 +1,29 @@
-# EtherPubG
-## Buy and Sell Weapon Skins with the Ethereum Blockchain
+# EtherPUBG
 
-### Usage
+This is an Angular Web App built on 6.2.6.
 
-1. Requires yarn and truffle
+## Running
 
-```bash
-# Install yarn
-sudo npm install yarn --global
-
-# Install truffle 
-yarn global add truffle 
-
-# Optional, Install ganache-cli
-yarn global add ganache-cli
-```
-
-2. Setup ganache, or interface with an Ethereum Testnet or Mainnet for deployment.
-
-3. Configure `truffle.js` to work with the specified Ethereum net host. You can use the default one in truffle.js currently.
-
-4. Deploy the smart contract.
+In order to run the web app it's fairly simple. If you're looking to setup the solidity smart contract. I suggest checkout out `/solidity/README.md` to setup and configure that aspect of the web application.
 
 ```bash
-# Compile the smart contract
-truffle compile
+# Install yarn 
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 
-# Run migrations
-truffle migrate --network=development
+# Install typescript, angular cli
+yarn global add typescript @angular/cli
+
+# In root directory install node_modules
+yarn
+
+# Serve the angular app
+ng serve
 ```
 
-5. Run tests to see if it works:
+## Additional Notes
 
-```bash
-# Test the smart contract
-truffle test
-```
-
-### Additional Notes
+- Any questions or concerns email hello@chriscates.ca
 
 - MIT Licensed :heart:
+
+- `deploy.sh` is just to build and publish to gh-pages.

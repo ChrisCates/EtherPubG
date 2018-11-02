@@ -1,0 +1,14 @@
+<div class="txs">
+  <h2>Recent Transactions</h2>
+  <div class="tx" *ngFor="let tx of this.main.txs;">
+    <h3>Item Purchased <span class="small">at Block {{tx.blockNumber}}</span></h3>
+    <p class="label">buyer</p>
+    <p>{{tx.address}}</p>
+    <p class="label">Amount in ETH</p>
+    <p>{{tx.cost}} ETH</p>
+    <p class="label">{{tx.inputs.params[0]['name']}}</p>
+    <p>{{tx.inputs.params[0]['value']}}</p>
+    <p class="label">{{tx.inputs.params[1]['name']}}</p>
+    <p>{{tx.inputs.params[1]['value']}}</p>
+  </div>
+</div>
