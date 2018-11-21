@@ -11,8 +11,6 @@ export class TransactionsComponent implements OnInit {
 
   constructor(public main: MainService) { }
 
-  ngOnInit() {
-    this.main.getTransactions();
-  }
+  ngOnInit() { }
 
 }

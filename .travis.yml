@@ -1,0 +1,13 @@
+language: node_js
+
+node_js:
+  - "8"
+
+before_script:
+  - npm install -g yarn typescript @angular/cli truffle ganache-cli
+
+script:
+  - ganache-cli > /dev/null &
+  - cd solidity
+  - yarn
+  - yarn nyc

@@ -8,12 +8,10 @@
       <p>
         Buy and Sell PUBG Weapon Skins with ETH here.
         If you intend to use the Ropsten network,
-        you can get Ethereum from this 
-        <a href="https://faucet.metamask.io" target="_blank">faucet.</a>
-        If you intend to use the Rinkeby network,
         you can get Ethereum from this
-        <a href="https://faucet.rinkeby.io/" target="_blank">faucet.</a>
-        Make sure you have <a href="https://metamask.io" target="_blank">metamask</a> 
+        <a href="https://faucet.metamask.io" target="_blank">faucet.</a>
+        Elsewise, you can specify a custom contract address, if applicable.
+        Make sure you have <a href="https://metamask.io" target="_blank">metamask</a>
         setup as well too.
       </p>
       <p>
@@ -23,36 +21,30 @@
         Smart Contract Network <br/>
         Contract Address: {{this.main.getContract()}}
       </p>
-      <input type="text" 
+      <input type="text"
       class="easing"
-      [(ngModel)]="this.main.contracts[this.main.network]" 
+      [(ngModel)]="this.main.contracts[this.main.network]"
       [ngClass]="{'active': this.main.network == 0}"/>
       <div class="networks">
-        <a class="button easing" 
+        <a class="button easing"
         [ngClass]="{'active': this.main.network == 0}"
-        (click)="this.main.network = 0;"
+        (click)="this.main.updateContract(0);"
         >
           Custom
         </a>
-        <a class="button easing" 
+        <a class="button easing"
         [ngClass]="{'active': this.main.network == 1}"
-        (click)="this.main.network = 1;"
+        (click)="this.main.updateContract(1);"
         >
           Ropsten
-        </a>
-        <a class="button easing" 
-        [ngClass]="{'active': this.main.network == 2}"
-        (click)="this.main.network = 2;"
-        >
-          Rinkeby
         </a>
       </div>
     </div>
   </div>
   <!-- End of title -->
-  
+
   <app-form></app-form>
   <app-transactions></app-transactions>
-  
+
 </div>
 <!-- End of container -->

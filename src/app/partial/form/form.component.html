@@ -1,8 +1,14 @@
 <div class="form">
+  <div class="form-overlay easing" [ngClass]="{'active': !this.main.enabled}">
+    <a href="https://metamask.io" target="_blank">
+      <img src="/assets/metamask.png"/>
+      <p>Please install Metamask to buy weapon skins.</p>
+    </a>
+  </div>
   <h2>Purchase A Weapon Skin</h2>
 
   <div class="items">
-    <div class="item easing" 
+    <div class="item easing"
     *ngFor="let item of items; let i of index;"
     [ngClass]="{'active': this.main.item === i}"
     (click)="this.main.item = i; this.activeItem = item;"

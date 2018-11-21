@@ -1,7 +1,7 @@
 import { Injectable, ApplicationRef } from '@angular/core';
 
-declare var require;
-declare var web3;
+declare const require;
+declare const window: any;
 
 const AbiDecoder = require('abi-decoder');
 
@@ -10,9 +10,13 @@ const AbiDecoder = require('abi-decoder');
 })
 export class MainService {
 
-  public abi = require('../../../solidity/build/contracts/Pubg.json');
-  public contractInfo = require('../../tx.info.json');
-  public contract = web3.eth.contract(this.abi['abi']).at(this.contractInfo.address);
+  public web3 = null;
+  public enabled = false;
+
+  public abi = null;
+  public ropstenContract = null;
+  public contractInfo = null;
+  public contract = null;
 
   public item = 0;
   public address = '';
@@ -23,7 +27,7 @@ export class MainService {
   public sendAddress = '';
 
   public contracts = [
-    this.contractInfo.address,
+    '0x...',
     '0x...',
     '0x...'
   ];
@@ -31,7 +35,41 @@ export class MainService {
   public txs = [];
 
   constructor(private ref: ApplicationRef) {
+    if (window.ethereum) {
+      window.web3 = new window.Web3(window.ethereum);
+      window.ethereum.enable()
+      .then(done => {
+        this.configure();
+      })
+      .catch(err => {
+        alert('Please allow EtherPUBG access to your Metamask wallet...');
+      });
+    } else if (window.web3) {
+      window.web3 = new window.Web3(window.web3.currentProvider);
+      this.configure();
+    } else {
+      this.enabled = false;
+    }
+  }
+
+  public configure() {
+    this.abi = require('../../../solidity/build/contracts/Pubg.json');
+    this.contractInfo = require('../../tx.info.json');
+    this.ropstenContract = require('../../tx.info.ropsten.json');
+    this.contract = window.web3.eth.contract(this.abi['abi']).at(this.contractInfo.address);
+    this.contracts[0] = this.contractInfo.address;
+    this.contracts[1] = this.ropstenContract.address;
     AbiDecoder.addABI(this.abi['abi']);
+    this.enabled = true;
+    this.web3 = window.web3;
+    this.getTransactions();
+  }
+
+  public updateContract(index) {
+    this.contract = window.web3.eth.contract(this.abi['abi']).at(this.contracts[index]);
+    this.network = index;
+    this.txs = [];
+    this.getTransactions();
   }
 
   public getContract() {
@@ -43,8 +81,8 @@ export class MainService {
       this.sendAddress,
       item.name,
       {
-        from: web3.eth.accounts[0],
-        value: web3.toWei(item.cost)
+        from: this.web3.eth.accounts[0],
+        value: this.web3.toWei(item.cost)
       },
       (error, tx) => {
         if (error) {
@@ -57,13 +95,12 @@ export class MainService {
   }
 
   public getTransaction(hash) {
-    web3.eth.getTransaction(hash, (error, result) => {
+    this.web3.eth.getTransaction(hash, (error, result) => {
       if (error) {
         console.error(error);
       } else {
-        console.log('tx', result);
         const inputs = AbiDecoder.decodeMethod(result.input);
-        const cost = web3.fromWei(result.value.toNumber());
+        const cost = this.web3.fromWei(result.value.toNumber());
         this.txs.push({
           blockNumber: result.blockNumber,
           address: result.from,
