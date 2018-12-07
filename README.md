@@ -1,7 +1,10 @@
 # EtherPUBG
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Build Status](https://travis-ci.org/ChrisCates/EtherPUBG.svg?branch=master)](https://travis-ci.org/ChrisCates/EtherPUBG)
 [![Coverage Status](https://coveralls.io/repos/github/ChrisCates/EtherPUBG/badge.svg?branch=master)](https://coveralls.io/github/ChrisCates/EtherPUBG?branch=master)
+![NPM Version](https://img.shields.io/badge/npm-v6.4.1-blue.svg)
+![Node Version](https://img.shields.io/badge/node-v10.14.1-blue.svg)
 
 This is an Angular Web App built on 6.2.6. The Solidity contracts are compiled using truffle.
 
