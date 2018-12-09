@@ -110,13 +110,27 @@ div.form {
         justify-content: space-between;
         align-items: center;
 
+        @media(max-width: 768px) {
+            display: block;
+        }
+
         div.address {
             width: calc(100% - 215px);
+            @media(max-width: 768px) {
+                width: 100%;
+            }
             p {
                 font-size: 18px;
                 font-weight: 300;
                 padding: 0 5px 5px 5px;
+                @media(max-width: 768px) {
+                    margin-top: 15px;
+                }
                 a.placeholder {
+                    @media(max-width: 768px) {
+                        display: block;
+                        margin-bottom: 15px;
+                    }
                     font-weight: 700;
                     font-size: 14px;
                 }
@@ -148,6 +162,12 @@ div.form {
                 font-weight: 700;
                 &:hover {
                     background: $b1;
+                }
+            }
+            @media(max-width: 768px) {
+                width: 100%;
+                a.button {
+                    width: 100%;
                 }
             }
         }
